@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+  <h1>HELLO</h1>
+  <label>PRINT TABLE:</label><button id="btn">SHOW</button>
+  <table>
+      <!-- Table head -->
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>item</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody id="tb">
+      
+      </tbody>
+    </table>
+    <script>
+    document.getElementById("btn").addEventListener("click",function(){
+    google.script.run.withSuccessHandler(generateTable).getTableData();
+    }); 
+    
+    
+    function generateTable(dataArray){
+    
+    var tbody = document.getElementById("tb");
+    
+    dataArray.forEach(function(r){
+    var row=document.createElement("tr");
+    var col1=document.createElement("td");
+    col1.textContent=r[0];
+    var col2=document.createElement("td");
+    col2.textContent=r[1];
+    var col3=document.createElement("td");
+    col3.textContent=r[2];
+      row.appendChild(col1);
+      row.appendChild(col2);
+     row.appendChild(col3);
+    tbody.appendChild(row);
+    });
+  
+    };
+    
+    </script>
+  </body>
+</html>
+
+

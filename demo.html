@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+    th{
+       padding;10px;
+       background: yellow;
+       border: 1px;
+       border-style: solid;
+       }
+td {
+    border: 1px;
+    border-style: solid;
+    padding: 5px;
+    text-align: center;
+    }
+    #formContainer{
+  margin: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: #A9E0E7;
+background: -webkit-linear-gradient(top left, #A9E0E7, #59D8DF);
+background: -moz-linear-gradient(top left, #A9E0E7, #59D8DF);
+background: linear-gradient(to bottom right, #A9E0E7, #59D8DF);
+
+  justify-content: center;
+  width: 600px;
+    border-radius: 40px;
+    float: left;
+    margin: 20px;
+}
+.txt
+{
+  margin:20px;
+  width: 200px;
+  padding: 10px;
+ background: white;
+ border: 1px solid rgb(255, 168, 83);
+ border-radius: 5px;
+ color: rgb(102, 102, 102);
+ outline: none;
+}
+.lab{
+  padding-left: 26px;
+    width: 200px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: right;
+}
+img#img {
+    border-radius: 50%;
+    margin: auto;
+    padding: 25px;
+}
+    </style>
+  </head>
+  <body>
+  <h1>HELLO</h1>
+  <label>PRINT TABLE:</label><button id="btn">VIEW TABLE</button>
+
+ <input id="data" type="text" value="" maxlength="100" />
+    <button type="button" onClick="send();">SEARCH</button>
+    <div id="Message"></div>
+
+  <table>
+      <!-- Table head -->
+      <thead>
+        <tr>
+          <th>E-mail</th>
+          <th>student name</th>
+          <th>aadhar</th>
+          <th>father name</th>
+          <th>mother name</th>
+          <th>school type</th>
+          <th>school</th>
+          <th>class</th>
+          <th>date of birth</th>
+          <th>gender</th>
+          <th>category</th>
+          <th>address</th>
+          <th>mobile no</th>
+        </tr>
+      </thead>
+      <tbody id="tb">
+
+      </tbody>
+    </table>
+
+    <div id="formContainer">
+    <img src="https://1.bp.blogspot.com/-yjIhUZ11c-Y/XrbwvThmGTI/AAAAAAAAUvk/tD3wb0-76swZrCBa3UNZhKMjCRslmpOBACLcBGAsYHQ/s1600/avatar.png" alt="Smiley face" height=100px width=100px id="img" class="image">
+    <div class="two">
+      <label for="lfname" class="lab">EMAIL:</label>
+      <input type="text" id="email" value="" class="txt">
+      </div>
+    <div class="two">
+      <label for="lfname" class="lab">STUDENT NAME :</label>
+     <input type="text" id="sname" value="" class="txt">
+       </div>
+    <div class="two">
+      <label for="lfname" class="lab">AADHAR:</label>
+     <input type="text" id="aadhar" value="" class="txt">
+       </div>
+    <div class="two">
+      <label for="lfname" class="lab">FATHER NAME:</label>
+     <input type="text" id="fname" value="" class="txt">
+       </div>
+    <div class="two">
+      <label for="lfname" class="lab">MOTHER NAME:</label>
+     <input type="text" id="mname" value="" class="txt">
+       </div>
+       <div class="two">
+      <label for="lfname" class="lab">TYPE:</label>
+     <input type="text" id="type" value="" class="txt">
+       </div>
+    <div class="two">
+      <label for="lfname" class="lab">SCHOOL:</label>
+     <input type="text" id="school" value="" class="txt">
+       </div>
+    <div class="two">
+      <label for="lfname" class="lab">CLASS:</label>
+     <input type="text" id="cls" value="" class="txt">
+       </div>
+    <div class="two">
+      <label for="lfname" class="lab">DATE OF BIRTH:</label>
+     <input type="text" id="dob" value="" class="txt">
+       </div>
+    <div class="two">
+      <label for="lfname" class="lab">GENDER:</label>
+      <input type="text" id="gender" value="" class="txt">
+      </div>
+    <div class="two">
+      <label for="lfname" class="lab">CATEGORY:</label>
+      <input type="text" id="category" value="" class="txt">
+    </div>
+    <div class="two">
+      <label for="lfname" class="lab">ADDRESS:</label>
+      <input type="text" id="addr" value="" class="txt">
+    </div>
+    <div class="two">
+      <label for="lfname" class="lab">MOBILE NO:</label>
+      <input type="text" id="mob" value="" class="txt">
+    </div>
+     </div>
+
+
+    <script>
+    document.getElementById("btn").addEventListener("click",function(){
+    google.script.run.withSuccessHandler(viewTable).getTableData();
+   });
+
+    function send(){
+                var data = document.getElementById("data").value;
+                //sendToSpreadsheet is in Code.gs and getFromSpreadsheet(fromSheet) is below
+                google.script.run.withSuccessHandler(generateTable).sendToSpreadsheet(data);
+            }
+
+    function generateTable(dataArray){
+    var data = JSON.parse(dataArray)
+    var tbody = document.getElementById("tb");
+
+    data.forEach(function(r){
+    var row=document.createElement("tr");
+    var col1=document.createElement("td");
+    col1.textContent=r[0];
+    document.getElementById("email").value=r[0];
+    var col2=document.createElement("td");
+    col2.textContent=r[1];
+    document.getElementById("sname").value=r[1];
+    var col3=document.createElement("td");
+    col3.textContent=r[2];
+    document.getElementById("aadhar").value=r[2];
+    var col4=document.createElement("td");
+    col4.textContent=r[3];
+    document.getElementById("fname").value=r[3];
+    var col5=document.createElement("td");
+    col5.textContent=r[4];
+  document.getElementById("mname").value=r[4];
+    var col6=document.createElement("td");
+    col6.textContent=r[5];
+  document.getElementById("type").value=r[5];
+    var col7=document.createElement("td");
+    col7.textContent=r[6];
+   document.getElementById("school").value=r[6];
+    var col8=document.createElement("td");
+    col8.textContent=r[7];
+   document.getElementById("cls").value=r[7];
+    var col9=document.createElement("td");
+    col9.textContent=r[8];
+   document.getElementById("dob").value=r[8];
+    var col10=document.createElement("td");
+    col10.textContent=r[9];
+   document.getElementById("gender").value=r[9];
+    var col11=document.createElement("td");
+    col11.textContent=r[10];
+   document.getElementById("category").value=r[10];
+  var col12=document.createElement("td");
+    col12.textContent=r[11];
+    document.getElementById("addr").value=r[11];
+    var col13=document.createElement("td");
+    col13.textContent=r[12];
+     document.getElementById("mob").value=r[12];
+      row.appendChild(col1);
+      row.appendChild(col2);
+     row.appendChild(col3);
+     row.appendChild(col4);
+     row.appendChild(col5);
+     row.appendChild(col6);
+     row.appendChild(col7);
+     row.appendChild(col8);
+     row.appendChild(col9);
+     row.appendChild(col10);
+     row.appendChild(col11);
+     row.appendChild(col12);
+     row.appendChild(col13);
+    tbody.appendChild(row);
+    });
+
+    };
+
+function viewTable(dataArray){
+
+    var tbody = document.getElementById("tb");
+
+    dataArray.forEach(function(r){
+    document.getElementById("Message").innerHTML="data array";
+    var row=document.createElement("tr");
+    var col1=document.createElement("td");
+    col1.textContent=r[0];
+    var col2=document.createElement("td");
+    col2.textContent=r[1];
+    var col3=document.createElement("td");
+    col3.textContent=r[2];
+    var col4=document.createElement("td");
+    col4.textContent=r[3];
+    var col5=document.createElement("td");
+    col5.textContent=r[4];
+
+    var col6=document.createElement("td");
+    col6.textContent=r[5];
+
+    var col7=document.createElement("td");
+    col7.textContent=r[6];
+
+    var col8=document.createElement("td");
+    col8.textContent=r[7];
+
+    var col9=document.createElement("td");
+    col9.textContent=r[8];
+
+    var col10=document.createElement("td");
+    col10.textContent=r[9];
+
+    var col11=document.createElement("td");
+    col11.textContent=r[10];
+
+  var col12=document.createElement("td");
+    col12.textContent=r[11];
+
+    var col13=document.createElement("td");
+    col13.textContent=r[12];
+
+      row.appendChild(col1);
+      row.appendChild(col2);
+     row.appendChild(col3);
+     row.appendChild(col4);
+     row.appendChild(col5);
+     row.appendChild(col6);
+     row.appendChild(col7);
+     row.appendChild(col8);
+     row.appendChild(col9);
+     row.appendChild(col10);
+     row.appendChild(col11);
+     row.appendChild(col12);
+    tbody.appendChild(row);
+    });
+
+    };
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+#formContainer{
+  margin: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: #A9E0E7;
+background: -webkit-linear-gradient(top left, #A9E0E7, #59D8DF);
+background: -moz-linear-gradient(top left, #A9E0E7, #59D8DF);
+background: linear-gradient(to bottom right, #A9E0E7, #59D8DF);
+
+  //justify-content: center;
+  width: 600px;
+    border-radius: 40px;
+    float: left;
+    margin: 20px;
+}
+.txt
+{
+  margin:20px;
+  width: 200px;
+  padding: 10px;
+ background: white;
+ border: 1px solid rgb(255, 168, 83);
+ border-radius: 5px;
+ color: rgb(102, 102, 102);
+ outline: none;
+}
+.lab{
+  padding-left: 26px;
+    width: 200px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: right;
+}
+img#img {
+    margin: auto;
+    padding: 25px;
+    border-radius: 50%;
+    text-align: center;
+}
